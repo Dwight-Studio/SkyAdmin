@@ -2,6 +2,7 @@ package fr.skynnotopia.skyadmin;
 
 import fr.skynnotopia.skyadmin.commands.*;
 import fr.skynnotopia.skyadmin.tabcompleters.*;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
