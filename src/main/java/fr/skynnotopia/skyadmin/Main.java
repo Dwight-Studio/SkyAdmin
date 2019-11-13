@@ -4,7 +4,6 @@ import fr.skynnotopia.skyadmin.commands.*;
 import fr.skynnotopia.skyadmin.tabcompleters.*;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public final class Main extends JavaPlugin {
 
@@ -35,8 +34,8 @@ public final class Main extends JavaPlugin {
         getCommand("warn").setExecutor(new CommandWarn());
         getCommand("warn").setTabCompleter(new TabCompleterWarn());
 
-        getCommand("warns").setExecutor(new CommandWarns());
-        getCommand("warns").setTabCompleter(new TabCompleterWarns());
+        getCommand("archive").setExecutor(new CommandArchive());
+        getCommand("archive").setTabCompleter(new TabCompleterArchive());
 
         // Boucles de notification pour les nouveaux reports/tickets
         /*new BukkitRunnable() {

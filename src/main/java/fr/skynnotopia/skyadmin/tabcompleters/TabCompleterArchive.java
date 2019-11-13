@@ -6,7 +6,7 @@ import org.bukkit.command.TabCompleter;
 
 import java.util.List;
 
-public class TabCompleterWarns implements TabCompleter {
+public class TabCompleterArchive implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         return null;
