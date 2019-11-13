@@ -1,8 +1,60 @@
 name: SkyAdmin
 version: ${project.version}
-main: fr.skynnotopia.skyadmin.SkyAdmin
-api-version: 1.13
+main: fr.skynnotopia.skyadmin.Main
+api-version: "1.13"
 prefix: SkyAdmin
 authors: [Deleranax]
 description: Plugin assurant l'administration de Skynnotopia
 website: http://skynnotopia.yo.fr
+commands:
+  skyadmin:
+    usage: "/skyadmin"
+    description: "Commande de gestion du plugin."
+    permission: skyplugins.admin
+    permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
+  warn:
+    usage: "/warn <Joueur> <Raison>"
+    description: "Mettre un avertissment à un joueur."
+    permission: skyadmin.warn
+    permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
+  ticket:
+      usage: "/ticket <Description du problème>"
+      description: "Demander de l'aide, déclarer un problème."
+      permission: skyadmin.ticket
+      permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
+  tickets:
+    usage: "/tickets <Id> <Cloturer|Assigner>"
+    description: "S'occuper des tickets."
+    permission: skyadmin.tickets
+    permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
+  report:
+    usage: "/report <Joueur> <Raison>"
+    description: "Se plaindre d'un joueur."
+    permission: skyadmin.report
+    permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
+  reports:
+    usage: "/reports <Id> <Cloturer|Assigner>"
+    description: "S'occuper des tickets."
+    permission: skyadmin.reports
+    permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
+  archive:
+    usage: "/archive <Warns|Reports|Ticket|Joueur> <Joueur|Id>"
+    description: "Consulter les archives de la modération."
+    permission: skyadmin.archive
+    permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
+
+permissions:
+  skyadmin.*:
+    description: "Autorisation de toutes les commandes"
+    children:
+      - skyadmin.report
+      - skyadmin.ticket
+      - skyadmin.warn
+      - skyadmin.archive
+      - skyplugins.admin
+  skyadmin.report:
+    description: "Autorisation d'utiliser la commande /report"
+  skyadmin.ticket:
+    description: "Autorisation d'utiliser la commande /ticket"
+  skyplugins.admin:
+    default: op
