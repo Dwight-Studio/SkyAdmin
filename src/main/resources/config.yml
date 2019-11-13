@@ -1,0 +1,15 @@
+#SkyChat Config File
+#--- Don't touch ---
+lastReportId: 0
+lastWarnId: 0
+lastTicketId: 0
+#--- Don't touch ---
+
+#Warns informations
+warns: []
+
+#Tickets informations
+tickets: []
+
+#Reports informations
+reports: []

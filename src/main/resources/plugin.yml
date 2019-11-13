@@ -1,0 +1,8 @@
+name: SkyAdmin
+version: ${project.version}
+main: fr.skynnotopia.skyadmin.SkyAdmin
+api-version: 1.13
+prefix: SkyAdmin
+authors: [Deleranax]
+description: Plugin assurant l'administration de Skynnotopia
+website: http://skynnotopia.yo.fr
