@@ -6,7 +6,7 @@
 
     <groupId>fr.skynnotopia</groupId>
     <artifactId>SkyAdmin</artifactId>
-    <version>ALPHA-0.0.1</version>
+    <version>ALPHA-2.0.0</version>
     <packaging>jar</packaging>
 
     <name>SkyAdmin</name>
