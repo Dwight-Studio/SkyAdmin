@@ -14,7 +14,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         // Instance de la Class Config
-        Config c = new Config(this);
+        new Config(this);
 
         // Commandes
         getCommand("skyadmin").setExecutor(new CommandSkyAdmin());
