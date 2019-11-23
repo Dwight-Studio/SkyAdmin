@@ -1,6 +1,5 @@
 package fr.skynnotopia.skyadmin;
 
-import fr.skynnotopia.skyadmin.exceptions.ReportNotInitiatedException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -8,149 +7,132 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-
-import static fr.skynnotopia.skyadmin.Main.logPrefix;
+import java.util.UUID;
 
 public class Report {
-    private boolean isInitiated = false;
     private int id;
     private Player sender;
     private Player player;
     private String date;
     private String reason;
     private Boolean isAssigned;
-    private Player assignment;
+    private Player assignedTo;
+    private String assignmentDate;
     private Boolean isClosed;
+    private Player closedBy;
+    private String closingDate;
 
-    public Report(int id){
-        if (Config.getInt("lastReportId") > id && id > 0) {
-            isInitiated = true;
+    public Report(int id) {
+        if (Config.getString("reports." + id + ".sender") != null) {
             this.id = id;
-            this.sender = Bukkit.getServer().getPlayer(Config.getString("reports." + id + ".sender"));
-            this.player = Bukkit.getServer().getPlayer(Config.getString("reports." + id + ".player"));
+            this.sender = Bukkit.getServer().getPlayer(UUID.fromString(Config.getString("reports." + id + ".sender")));
+            this.player = Bukkit.getServer().getPlayer(UUID.fromString(Config.getString("reports." + id + ".player")));
             this.date = Config.getString("reports." + id + ".date");
             this.reason = Config.getString("reports." + id + ".reason");
             this.isAssigned = Config.getBoolean("reports." + id + ".isAssigned");
             if (this.isAssigned) {
-                this.assignment = Bukkit.getServer().getPlayer(Config.getString("reports." + id + ".assignment"));
+                this.assignedTo = Bukkit.getServer().getPlayer(UUID.fromString(Config.getString("reports." + id + ".assignedTo")));
+                this.assignmentDate = Config.getString("reports." + id + ".assignmentDate");
             } else {
-                assignment = null;
+                this.assignedTo = null;
+                this.assignmentDate = null;
             }
             this.isClosed = Config.getBoolean("reports." + id + ".isClosed");
+            if (this.isClosed) {
+                this.closedBy = Bukkit.getServer().getPlayer(UUID.fromString(Config.getString("reports."+ id + ".closedBy")));
+                this.closingDate = Config.getString("reports." + id + ".closingDate");
+            } else {
+                this.closedBy = null;
+                this.closingDate = null;
+            }
+        } else {
+            throw new NullPointerException("Report (Id:" + id + ") does't exist");
         }
     }
 
-    public Boolean newReport(Player sender, Player player, String reason) {
-        try {
-            isInitiated = true;
-            this.id = Config.getInt("lastReportId") + 1;
-            Config.set("lastReportId", id);
-            this.sender = sender;
-            this.player = player;
-            this.date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
-            this.reason = reason;
-            this.isAssigned = false;
-            this.assignment = null;
-            this.isClosed = false;
+    public Report(Player sender, Player player, String reason) {
+        this.id = Config.getInt("lastReportId") + 1;
+        Config.set("lastReportId", id);
+        this.sender = sender;
+        this.player = player;
+        this.date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
+        this.reason = reason;
+        this.isAssigned = false;
+        this.assignedTo = null;
+        this.isClosed = false;
 
-            Config.set("reports." + id + ".sender", sender.getUniqueId().toString());
-            Config.set("reports." + id + ".player", player.getUniqueId().toString());
-            Config.set("reports." + id + ".date", date);
-            Config.set("reports." + id + ".reason", reason);
-            Config.set("reports." + id + ".isAssigned", false);
-            Config.set("reports." + id + ".assignment", "");
-            Config.set("reports." + id + ".isClosed", false);
-
-        } catch (Exception e) {
-            Bukkit.getLogger().log(Level.SEVERE, logPrefix + e.toString());
-            isInitiated = false;
-            return false;
-        }
-        return true;
+        Config.set("reports." + id + ".sender", sender.getUniqueId().toString());
+        Config.set("reports." + id + ".player", player.getUniqueId().toString());
+        Config.set("reports." + id + ".date", date);
+        Config.set("reports." + id + ".reason", reason);
+        Config.set("reports." + id + ".isAssigned", false);
+        Config.set("reports." + id + ".isClosed", false);
     }
 
-    public Boolean isClosed() throws ReportNotInitiatedException {
-        if (!isInitiated) {
-            throw new ReportNotInitiatedException();
-        }
+    public Boolean isClosed() {
         return isClosed;
     }
 
-    public Player getAssignment() throws ReportNotInitiatedException {
-        if (!isInitiated) {
-            throw new ReportNotInitiatedException();
-        }
-        return assignment;
+    public Player getAssignment() {
+        return assignedTo;
     }
 
-    public Boolean isAssigned() throws ReportNotInitiatedException {
-        if (!isInitiated) {
-            throw new ReportNotInitiatedException();
-        }
+    public Boolean isAssigned() {
         return isAssigned;
     }
 
-    public String getReason() throws ReportNotInitiatedException {
-        if (!isInitiated) {
-            throw new ReportNotInitiatedException();
-        }
+    public String getReason() {
         return reason;
     }
 
-    public String getDate() throws ReportNotInitiatedException {
-        if (!isInitiated) {
-            throw new ReportNotInitiatedException();
-        }
+    public String getDate() {
         return date;
     }
 
-    public Player getPlayer() throws ReportNotInitiatedException {
-        if (!isInitiated) {
-            throw new ReportNotInitiatedException();
-        }
+    public Player getPlayer() {
         return player;
     }
 
-    public Player getSender() throws ReportNotInitiatedException {
-        if (!isInitiated) {
-            throw new ReportNotInitiatedException();
-        }
+    public Player getSender() {
         return sender;
     }
 
-    public int getId() throws ReportNotInitiatedException {
-        if (!isInitiated) {
-            throw new ReportNotInitiatedException();
-        }
+    public int getId() {
         return id;
     }
 
-    public void setAssignement(Player player) throws ReportNotInitiatedException {
-        if (!isInitiated) {
-            throw new ReportNotInitiatedException();
-        }
+    public void setAssignement(Player player) {
         this.isAssigned = true;
-        this.assignment = player;
-        Config.set("Reports." + id + ".assignment", player.getUniqueId());
+        this.assignedTo = player;
+        Config.set("reports." + id + ".assignedTo", player.getUniqueId().toString());
+        Config.set("reports." + id + ".isAssigned", true);
+        assignmentDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
+        Config.set("reports." + id + ".assignmentDate", assignmentDate);
+
     }
 
-    public void close() throws ReportNotInitiatedException {
-        if (!isInitiated) {
-            throw new ReportNotInitiatedException();
-        }
+    public void close(Player closingPlayer) {
         this.isClosed = true;
-        Config.set("Reports." + id + ".isClosed", player.getUniqueId());
+        Config.set("reports." + id + ".isClosed", true);
+        Config.set("reports." + id + ".closedBy", closingPlayer.getUniqueId().toString());
+        closingDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
+        Config.set("reports." + id + ".closingDate", closingDate);
+    }
+
+    public Player getClosingPlayer() {
+        return closedBy;
     }
 
     public static List<Report> getPlayerSentReports(Player player) {
         int lastReportId = Config.getInt("lastReportId");
         List<Report> Reports = new ArrayList<Report>();
-        for (int i = 1; i < lastReportId; i++) {
-            Bukkit.getServer().getPlayer("Deleranax").sendMessage(""+i);
-            Bukkit.getServer().getPlayer("Deleranax").sendMessage(Config.getString("Reports." + i + ".sender"));
-            if (Bukkit.getServer().getPlayer(Config.getString("Reports." + i + ".sender")) == player) {
-                Reports.add(new Report(i));
+        for (int i = 1; i <= lastReportId; i++) {
+            try {
+                if (Bukkit.getServer().getPlayer(UUID.fromString(Config.getString("reports." + i + ".sender"))) == player) {
+                    Reports.add(new Report(i));
+                }
+            } catch (NullPointerException e) {
+                break;
             }
         }
         return Reports;
@@ -160,38 +142,138 @@ public class Report {
         int lastReportId = Config.getInt("lastReportId");
         List<Report> Reports = new ArrayList<Report>();
         for (int i = 1; i <= lastReportId; i++) {
-            if (Bukkit.getServer().getPlayer(Config.getString("Reports." + i + ".player")) == player) {
-                Reports.add(new Report(i));
+            try {
+                if (Bukkit.getServer().getPlayer(UUID.fromString(Config.getString("reports." + i + ".player"))) == player) {
+                    Reports.add(new Report(i));
+                }
+            } catch (NullPointerException e) {
+                break;
             }
         }
         return Reports;
     }
 
-    public static int getPlayerActiveSentReportsCount(Player player) {
-        int val = 0;
-        try {
-            for (Report reports : getPlayerSentReports(player)) {
-                if (reports.getSender() == player && reports.isClosed() == false) {
-                    val++;
-                }
+    public static List<Report> getPlayerActiveSentReports(Player player) {
+        List<Report> activeReports = new ArrayList<Report>();
+        for (Report reports : getPlayerSentReports(player)) {
+            if (!reports.isClosed()) {
+                activeReports.add(reports);
             }
-        } catch (ReportNotInitiatedException e) {
-            Bukkit.getLogger().log(Level.SEVERE, logPrefix + e.toString());
         }
-        return val;
+        return activeReports;
     }
 
-    public static int getPlayerActiveReportsCount(Player player) {
-        int val = 0;
-        try {
-            for (Report reports : getPlayerReports(player)) {
-                if (reports.getSender() == player && reports.isClosed() == false) {
-                    val++;
-                }
+    public static List<Report> getPlayerActiveReports(Player player) {
+        List<Report> activeReports = new ArrayList<Report>();
+        for (Report reports : getPlayerReports(player)) {
+            if (!reports.isClosed()) {
+                activeReports.add(reports);
             }
-        } catch (ReportNotInitiatedException e) {
-            Bukkit.getLogger().log(Level.SEVERE, logPrefix + e.toString());
         }
-        return val;
+        return activeReports;
+    }
+
+    public static List<Report> getActiveReports() {
+        int lastReportId = Config.getInt("lastReportId");
+        List<Report> Reports = new ArrayList<Report>();
+        for (int i = 1; i <= lastReportId; i++) {
+            try {
+                Report report = new Report(i);
+                if (!report.isClosed()) {
+                    Reports.add(report);
+                }
+            } catch (NullPointerException e) {
+                break;
+            }
+        }
+        return Reports;
+    }
+
+    public static List<Report> getUnassignedReports() {
+        int lastReportId = Config.getInt("lastReportId");
+        List<Report> Reports = new ArrayList<Report>();
+        for (int i = 1; i <= lastReportId; i++) {
+            try {
+                Report report = new Report(i);
+                if (!report.isAssigned() && !report.isClosed()) {
+                    Reports.add(report);
+                }
+            } catch (NullPointerException e) {
+                break;
+            }
+        }
+        return Reports;
+    }
+
+    public static List<Report> getAssignedReports() {
+        int lastReportId = Config.getInt("lastReportId");
+        List<Report> Reports = new ArrayList<Report>();
+        for (int i = 1; i <= lastReportId; i++) {
+            try {
+                Report report = new Report(i);
+                if (report.isAssigned() && !report.isClosed()) {
+                    Reports.add(report);
+                }
+            } catch (NullPointerException e) {
+                break;
+            }
+        }
+        return Reports;
+    }
+
+    public static List<Report> getAssignedReports(Player assignment) {
+        int lastReportId = Config.getInt("lastReportId");
+        List<Report> Reports = new ArrayList<Report>();
+        for (int i = 1; i <= lastReportId; i++) {
+            try {
+                Report report = new Report(i);
+                if (report.isAssigned() && !report.isClosed() && report.getAssignment() == assignment) {
+                    Reports.add(report);
+                }
+            } catch (NullPointerException e) {
+                break;
+            }
+        }
+        return Reports;
+    }
+
+    public static List<Report> getClosedReports() {
+        int lastReportId = Config.getInt("lastReportId");
+        List<Report> Reports = new ArrayList<Report>();
+        for (int i = 1; i <= lastReportId; i++) {
+            try {
+                Report report = new Report(i);
+                if (report.isClosed()) {
+                    Reports.add(report);
+                }
+            } catch (NullPointerException e) {
+                break;
+            }
+        }
+        return Reports;
+    }
+
+    public static List<Report> getClosedReports(Player closingPlayer) {
+        int lastReportId = Config.getInt("lastReportId");
+        List<Report> Reports = new ArrayList<Report>();
+        for (int i = 1; i <= lastReportId; i++) {
+            try {
+                Report report = new Report(i);
+                if (report.isClosed() && report.getClosingPlayer() == closingPlayer) {
+                    Reports.add(report);
+                }
+            } catch (NullPointerException e) {
+                break;
+            }
+        }
+        return Reports;
+    }
+
+    public String getAssignmentDate() {
+        return assignmentDate;
+    }
+
+    public String getClosingDate() {
+        return closingDate;
     }
 }

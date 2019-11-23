@@ -22,8 +22,10 @@ commands:
       description: "Demander de l'aide, déclarer un problème."
       permission: skyadmin.ticket
       permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
+      aliases:
+        - aide
   tickets:
-    usage: "/tickets <Id> <Cloturer|Assigner>"
+    usage: "/tickets <Id> <cloturer|assigner>"
     description: "S'occuper des tickets."
     permission: skyadmin.tickets
     permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
@@ -32,13 +34,15 @@ commands:
     description: "Se plaindre d'un joueur."
     permission: skyadmin.report
     permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
+    aliases:
+      - signaler
   reports:
-    usage: "/reports <Id> <Cloturer|Assigner>"
+    usage: "/reports <Id> <cloturer|assigner>"
     description: "S'occuper des tickets."
     permission: skyadmin.reports
     permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."
   archive:
-    usage: "/archive <Warns|Reports|Ticket|Joueur> <Joueur|Id>"
+    usage: "/archive <warns|reports|tickets|joueur> <Joueur|Id>"
     description: "Consulter les archives de la modération."
     permission: skyadmin.archive
     permission-message: "§cVous n'avez pas la permission d'utiliser cette commande."

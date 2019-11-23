@@ -46,6 +46,27 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <configuration>
+                            <tasks>
+                                <delete file="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.0.0.jar"/>
+                                <copy file="C:\Users\Alexandre Leconte\IdeaProjects\SkyAdmin\target\SkyAdmin-ALPHA-2.0.0.jar" tofile="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.0.0.jar"/>
+                                <sleep seconds="2"/>
+                                <exec executable="cmd">
+                                    <arg line='cmd /k "C:\Users\Alexandre Leconte\IdeaProjects\.spigot\start.bat"'/>
+                                </exec>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <resource>
