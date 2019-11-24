@@ -142,6 +142,11 @@ public class CommandReports implements CommandExecutor {
                 report.close(sender);
                 sender.sendMessage(messagePrefix + "Le signalement n°" + org.bukkit.ChatColor.AQUA + report.getId() + org.bukkit.ChatColor.RESET + " a bien été cloturé.");
                 report.getSender().sendMessage(messagePrefix + "Votre signalement (n°" + org.bukkit.ChatColor.AQUA + report.getId() + org.bukkit.ChatColor.RESET + ") à l'encontre de " + org.bukkit.ChatColor.AQUA + report.getPlayer().getDisplayName() + org.bukkit.ChatColor.RESET + " a été cloturé par " + org.bukkit.ChatColor.AQUA + sender.getDisplayName() + org.bukkit.ChatColor.RESET + ".");
+                for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
+                    if (pl.hasPermission("skyplugins.reports") && pl != sender) {
+                        report.getSender().sendMessage(messagePrefix + "Le signalement n°" + org.bukkit.ChatColor.AQUA + report.getId() + org.bukkit.ChatColor.RESET + " à l'encontre de " + org.bukkit.ChatColor.AQUA + report.getPlayer().getDisplayName() + org.bukkit.ChatColor.RESET + " a été cloturé par " + org.bukkit.ChatColor.AQUA + sender.getDisplayName() + org.bukkit.ChatColor.RESET + ".");
+                    }
+                }
             } catch (NullPointerException e) {
                 sender.sendMessage(messagePrefix + org.bukkit.ChatColor.RED + "ID invalide.");
                 return true;
@@ -173,6 +178,11 @@ public class CommandReports implements CommandExecutor {
                 sender.playSound(sender.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 1, 1);
                 report.getSender().sendMessage(messagePrefix + "Votre signalement (n°" + org.bukkit.ChatColor.AQUA + report.getId() + org.bukkit.ChatColor.RESET + ") à l'encontre de " + org.bukkit.ChatColor.AQUA + report.getPlayer().getDisplayName() + org.bukkit.ChatColor.RESET + " est en cours de traitement par " + org.bukkit.ChatColor.AQUA + sender.getDisplayName() + org.bukkit.ChatColor.RESET + ".");
                 report.getSender().playSound(sender.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 1, 1);
+                for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
+                    if (pl.hasPermission("skyplugins.reports") && pl != sender) {
+                        report.getSender().sendMessage(messagePrefix + "Le signalement n°" + org.bukkit.ChatColor.AQUA + report.getId() + org.bukkit.ChatColor.RESET + " à l'encontre de " + org.bukkit.ChatColor.AQUA + report.getPlayer().getDisplayName() + org.bukkit.ChatColor.RESET + " est en cours de traitement par " + org.bukkit.ChatColor.AQUA + sender.getDisplayName() + org.bukkit.ChatColor.RESET + ".");
+                    }
+                }
                 return true;
             } catch (NullPointerException e) {
                 sender.sendMessage(messagePrefix + org.bukkit.ChatColor.RED + "ID invalide.");
@@ -186,7 +196,7 @@ public class CommandReports implements CommandExecutor {
 
     public static void notifyReport() {
         for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
-            if (pl.hasPermission("skyplugins.admin")) {
+            if (pl.hasPermission("skyplugins.reports")) {
                 if (getUnassignedReports().size() == 1) {
                     pl.sendMessage(messagePrefix + org.bukkit.ChatColor.AQUA + getUnassignedReports().size() + org.bukkit.ChatColor.RESET + " signalement est en attente de traitement.");
                     pl.playSound(pl.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 1, 1);

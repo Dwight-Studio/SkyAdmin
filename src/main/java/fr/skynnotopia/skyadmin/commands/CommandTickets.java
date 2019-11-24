@@ -134,6 +134,11 @@ public class CommandTickets implements CommandExecutor {
                 ticket.close(sender);
                 sender.sendMessage(messagePrefix + "Le billet de support n°" + org.bukkit.ChatColor.AQUA + ticket.getId() + org.bukkit.ChatColor.RESET + " a bien été cloturé.");
                 ticket.getSender().sendMessage(messagePrefix + "Votre billet de support (n°" + org.bukkit.ChatColor.AQUA + ticket.getId() + org.bukkit.ChatColor.RESET + ") a été cloturé par " + org.bukkit.ChatColor.AQUA + sender.getDisplayName() + org.bukkit.ChatColor.RESET + ".");
+                for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
+                    if (pl.hasPermission("skyplugins.tickets") && pl != sender) {
+                        pl.sendMessage(messagePrefix + "Le billet de support n°" + org.bukkit.ChatColor.AQUA + ticket.getId() + org.bukkit.ChatColor.RESET + " a été cloturé par " + org.bukkit.ChatColor.AQUA + sender.getDisplayName() + org.bukkit.ChatColor.RESET + ".");
+                    }
+                }
             } catch (NullPointerException e) {
                 sender.sendMessage(messagePrefix + org.bukkit.ChatColor.RED + "ID invalide.");
                 return true;
@@ -164,12 +169,17 @@ public class CommandTickets implements CommandExecutor {
                 sender.playSound(sender.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 1, 1);
                 ticket.getSender().sendMessage(messagePrefix + "Votre billet de support (n°" + org.bukkit.ChatColor.AQUA + ticket.getId() + org.bukkit.ChatColor.RESET + ") est en cours de traitement par " + org.bukkit.ChatColor.AQUA + sender.getDisplayName() + org.bukkit.ChatColor.RESET + ".");
                 ticket.getSender().playSound(sender.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 1, 1);
-                return true;
+                for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
+                    if (pl.hasPermission("skyplugins.tickets") && pl != sender) {
+                        pl.sendMessage(messagePrefix + "Le billet de support n°" + org.bukkit.ChatColor.AQUA + ticket.getId() + org.bukkit.ChatColor.RESET + " est en cours de traitement par " + org.bukkit.ChatColor.AQUA + sender.getDisplayName() + org.bukkit.ChatColor.RESET + ".");
+                    }
+                }
             } catch (NullPointerException e) {
                 sender.sendMessage(messagePrefix + org.bukkit.ChatColor.RED + "ID invalide.");
                 e.printStackTrace();
                 return true;
             }
+            return true;
         } else {
             return false;
         }
@@ -177,7 +187,7 @@ public class CommandTickets implements CommandExecutor {
 
     public static void notifyTicket() {
         for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
-            if (pl.hasPermission("skyplugins.admin")) {
+            if (pl.hasPermission("skyplugins.tickets")) {
                 if (getUnassignedTickets().size() == 1) {
                     pl.sendMessage(messagePrefix + org.bukkit.ChatColor.AQUA + getUnassignedTickets().size() + org.bukkit.ChatColor.RESET + " billet de support est en attente de traitement.");
                     pl.playSound(pl.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 1, 1);

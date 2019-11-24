@@ -61,7 +61,7 @@ public class CommandArchive implements CommandExecutor {
                         sender.sendMessage(org.bukkit.ChatColor.RED + "Sanction : " + org.bukkit.ChatColor.DARK_PURPLE + "Aucune.");
                         break;
                     case 3:
-                        sender.sendMessage(org.bukkit.ChatColor.RED + "Sanction : " + org.bukkit.ChatColor.DARK_PURPLE + "(Palier 1) Banni(e) pendant 30 heures.");
+                        sender.sendMessage(org.bukkit.ChatColor.RED + "Sanction : " + org.bukkit.ChatColor.DARK_PURPLE + "(Palier 1) Banni(e) pendant 30 minutes.");
                         break;
                     case 6:
                         sender.sendMessage(org.bukkit.ChatColor.RED + "Sanction : " + org.bukkit.ChatColor.DARK_PURPLE + "(Palier 2) Banni(e) pendant 2 heures.");
