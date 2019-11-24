@@ -294,7 +294,7 @@ public class CommandArchive implements CommandExecutor {
 
             // Tickets assignés
             if (player.hasPermission("skyadmin.tickets")) {
-                TextComponent reportsString3 = new TextComponent("Billet assignés :");
+                TextComponent reportsString3 = new TextComponent("Billets assignés :");
                 if (getAssignedTickets(player).size() == 0) {
                     reportsString3.addExtra(" ");
                     TextComponent reportText = new TextComponent("Aucun billet.");

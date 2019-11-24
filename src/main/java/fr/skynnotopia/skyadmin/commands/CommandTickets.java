@@ -131,6 +131,10 @@ public class CommandTickets implements CommandExecutor {
                     sender.sendMessage(messagePrefix + org.bukkit.ChatColor.RED + "Ce billet a déjà été cloturé.");
                     return true;
                 }
+                if (!ticket.isAssigned()) {
+                    sender.sendMessage(messagePrefix + org.bukkit.ChatColor.RED + "Ce billet n'a pas été assigné.");
+                    return true;
+                }
                 ticket.close(sender);
                 sender.sendMessage(messagePrefix + "Le billet de support n°" + org.bukkit.ChatColor.AQUA + ticket.getId() + org.bukkit.ChatColor.RESET + " a bien été cloturé.");
                 ticket.getSender().sendMessage(messagePrefix + "Votre billet de support (n°" + org.bukkit.ChatColor.AQUA + ticket.getId() + org.bukkit.ChatColor.RESET + ") a été cloturé par " + org.bukkit.ChatColor.AQUA + sender.getDisplayName() + org.bukkit.ChatColor.RESET + ".");

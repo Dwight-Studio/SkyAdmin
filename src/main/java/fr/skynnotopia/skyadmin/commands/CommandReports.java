@@ -139,6 +139,10 @@ public class CommandReports implements CommandExecutor {
                     sender.sendMessage(messagePrefix + org.bukkit.ChatColor.RED + "Ce signalement a déjà été cloturé.");
                     return true;
                 }
+                if (!report.isAssigned()) {
+                    sender.sendMessage(messagePrefix + org.bukkit.ChatColor.RED + "Ce signalement n'a pas été assigné.");
+                    return true;
+                }
                 report.close(sender);
                 sender.sendMessage(messagePrefix + "Le signalement n°" + org.bukkit.ChatColor.AQUA + report.getId() + org.bukkit.ChatColor.RESET + " a bien été cloturé.");
                 report.getSender().sendMessage(messagePrefix + "Votre signalement (n°" + org.bukkit.ChatColor.AQUA + report.getId() + org.bukkit.ChatColor.RESET + ") à l'encontre de " + org.bukkit.ChatColor.AQUA + report.getPlayer().getDisplayName() + org.bukkit.ChatColor.RESET + " a été cloturé par " + org.bukkit.ChatColor.AQUA + sender.getDisplayName() + org.bukkit.ChatColor.RESET + ".");
