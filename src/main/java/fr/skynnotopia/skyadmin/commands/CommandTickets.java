@@ -154,7 +154,7 @@ public class CommandTickets implements CommandExecutor {
                 }
                 ticket.setAssignement(sender);
                 sender.sendMessage(messagePrefix + "-- Billet de support n°" + ticket.getId() + " --");
-                sender.sendMessage("Par : " + org.bukkit.ChatColor.AQUA + ticket.getSender().getDisplayName());
+                sender.sendMessage("Émetteur : " + org.bukkit.ChatColor.AQUA + ticket.getSender().getDisplayName());
                 sender.sendMessage("Date : " + org.bukkit.ChatColor.AQUA + ticket.getDate());
                 sender.sendMessage("Raison : " + org.bukkit.ChatColor.AQUA + ticket.getReason());
                 sender.sendMessage("État du billet : " + org.bukkit.ChatColor.AQUA + "Assigné");

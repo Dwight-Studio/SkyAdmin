@@ -45,7 +45,7 @@ public class CommandReports implements CommandExecutor {
             TextComponent reportsString1 = new TextComponent("Non-assignés :");
             if (getUnassignedReports().size() == 0) {
                 reportsString1.addExtra(" ");
-                TextComponent reportText = new TextComponent("Aucun report.");
+                TextComponent reportText = new TextComponent("Aucun signalement.");
                 reportsString1.addExtra(reportText);
             } else {
                 for (Report report : getUnassignedReports()) {
@@ -73,7 +73,7 @@ public class CommandReports implements CommandExecutor {
             TextComponent reportsString2 = new TextComponent("Assignés (tous) :");
             if (getAssignedReports().size() == 0) {
                 reportsString2.addExtra(" ");
-                TextComponent reportText = new TextComponent("Aucun report.");
+                TextComponent reportText = new TextComponent("Aucun signalement.");
                 reportsString2.addExtra(reportText);
             } else {
                 for (Report report : getAssignedReports()) {
@@ -99,7 +99,7 @@ public class CommandReports implements CommandExecutor {
             TextComponent reportsString3 = new TextComponent("Assignés (à vous) :");
             if (getAssignedReports(sender).size() == 0) {
                 reportsString3.addExtra(" ");
-                TextComponent reportText = new TextComponent("Aucun report.");
+                TextComponent reportText = new TextComponent("Aucun signalement.");
                 reportsString3.addExtra(reportText);
             } else {
                 for (Report report : getAssignedReports(sender)) {
@@ -162,12 +162,12 @@ public class CommandReports implements CommandExecutor {
                 }
                 report.setAssignement(sender);
                 sender.sendMessage(messagePrefix + "-- Signalement n°" + report.getId() + " --");
+                sender.sendMessage("Émetteur : " + org.bukkit.ChatColor.AQUA + report.getSender().getDisplayName());
                 sender.sendMessage("Joueur signalé : " + org.bukkit.ChatColor.AQUA + report.getPlayer().getDisplayName());
-                sender.sendMessage("Par : " + org.bukkit.ChatColor.AQUA + report.getSender().getDisplayName());
                 sender.sendMessage("Date : " + org.bukkit.ChatColor.AQUA + report.getDate());
                 sender.sendMessage("Raison : " + org.bukkit.ChatColor.AQUA + report.getReason());
                 sender.sendMessage("État du signalement : " + org.bukkit.ChatColor.AQUA + "Assigné");
-                sender.sendMessage("À : " + report.getAssignment().getDisplayName());
+                sender.sendMessage("À : " + org.bukkit.ChatColor.AQUA + report.getAssignment().getDisplayName());
                 sender.sendMessage("Date : " + org.bukkit.ChatColor.AQUA + report.getAssignmentDate());
                 sender.sendMessage(messagePrefix + "-- Signalement n°" + report.getId() + " --");
                 sender.playSound(sender.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 1, 1);

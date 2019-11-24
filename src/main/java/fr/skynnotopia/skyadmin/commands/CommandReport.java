@@ -47,6 +47,7 @@ public class CommandReport implements CommandExecutor {
 
         Report report = new Report(sender, player, message.toString());
         sender.sendMessage(messagePrefix + "-- Signalement n°" + report.getId() + " --");
+        sender.sendMessage("Émetteur : " + org.bukkit.ChatColor.AQUA + sender.getDisplayName());
         sender.sendMessage("Joueur signalé : " + ChatColor.AQUA + player.getDisplayName());
         sender.sendMessage("Raison : " + ChatColor.AQUA + message.toString());
         sender.sendMessage("État du signalement : " + ChatColor.AQUA + "Non assigné");

@@ -40,6 +40,7 @@ public class CommandTicket implements CommandExecutor {
 
         Ticket ticket = new Ticket(sender, message.toString());
         sender.sendMessage(messagePrefix + "-- Billet de support n°" + ticket.getId() + " --");
+        sender.sendMessage("Émetteur : " + org.bukkit.ChatColor.AQUA + ticket.getSender().getDisplayName());
         sender.sendMessage("Raison : " + ChatColor.AQUA + message.toString());
         sender.sendMessage("État du billet : " + ChatColor.AQUA + "Non assigné");
         sender.sendMessage(messagePrefix + "-- Billet de support n°" + ticket.getId() + " --");

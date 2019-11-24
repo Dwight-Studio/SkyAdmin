@@ -9,8 +9,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public final class Main extends JavaPlugin {
 
-    public static String logPrefix = "[SkyChat] ";
-    public static String messagePrefix = ChatColor.DARK_GREEN + "[SkyChat] " + ChatColor.RESET;
+    public static String logPrefix = "[SkyAdmin] ";
+    public static String messagePrefix = ChatColor.DARK_GREEN + "[SkyAdmin] " + ChatColor.RESET;
 
     @Override
     public void onEnable() {

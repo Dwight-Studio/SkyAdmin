@@ -16,7 +16,9 @@ public class TabCompleterReport implements TabCompleter {
         switch (args.length) {
             case 1:
                 for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
-                    c.add(pl.getName());
+                    if (pl.getName().contains(args[0])) {
+                        c.add(pl.getName());
+                    }
                 }
                 break;
         }

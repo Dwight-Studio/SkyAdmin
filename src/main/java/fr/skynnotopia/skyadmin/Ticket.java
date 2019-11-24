@@ -243,4 +243,17 @@ public class Ticket {
     public String getClosingDate() {
         return closingDate;
     }
+
+    public static List<Ticket> getTickets() {
+        int lastTicketId = Config.getInt("lastTicketId");
+        List<Ticket> Tickets = new ArrayList<Ticket>();
+        for (int i = 1; i <= lastTicketId; i++) {
+            try {
+                Tickets.add(new Ticket(i));
+            } catch (NullPointerException e) {
+                break;
+            }
+        }
+        return Tickets;
+    }
 }

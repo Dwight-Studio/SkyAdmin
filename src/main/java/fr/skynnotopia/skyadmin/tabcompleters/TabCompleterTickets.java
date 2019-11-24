@@ -21,12 +21,18 @@ public class TabCompleterTickets implements TabCompleter {
         switch (args.length) {
             case 1:
                 for (Ticket tickets : getActiveTickets()) {
-                    c.add("" + tickets.getId());
+                    if (Integer.toString(tickets.getId()).contains(args[0])) {
+                        c.add(Integer.toString(tickets.getId()));
+                    }
                 }
                 break;
             case 2:
-                c.add("cloturer");
-                c.add("assigner");
+                if ("cloturer".contains(args[1])) {
+                    c.add("cloturer");
+                }
+                if ("assigner".contains(args[1])) {
+                    c.add("assigner");
+                }
                 break;
         }
         return c;    }

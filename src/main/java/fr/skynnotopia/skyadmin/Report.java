@@ -276,4 +276,17 @@ public class Report {
     public String getClosingDate() {
         return closingDate;
     }
+
+    public static List<Report> getReports() {
+        int lastReportId = Config.getInt("lastReportId");
+        List<Report> Reports = new ArrayList<Report>();
+        for (int i = 1; i <= lastReportId; i++) {
+            try {
+                Reports.add(new Report(i));
+            } catch (NullPointerException e) {
+                break;
+            }
+        }
+        return Reports;
+    }
 }
