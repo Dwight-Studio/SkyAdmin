@@ -56,22 +56,27 @@ public class CommandWarn implements CommandExecutor {
                 Bukkit.getServer().broadcastMessage(ChatColor.RED + "Sanction : " + ChatColor.DARK_PURPLE + "(Palier 1) Banni(e) pendant 30 heures.");
                 Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(player.getName(),"Application de la sanction de palier 1 : Banni(e) pendant 30 minutes.", new Date(System.currentTimeMillis()+30*60*1000),sender.getName());
                 player.kickPlayer("Application de la sanction de palier 1 : Banni(e) pendant 30 minutes.");
+                break;
             case 6:
                 Bukkit.getServer().broadcastMessage(ChatColor.RED + "Sanction : " + ChatColor.DARK_PURPLE + "(Palier 2) Banni(e) pendant 2 heures.");
                 Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(player.getName(),"Application de la sanction de palier 2 : Banni(e) pendant 2 heures.", new Date(System.currentTimeMillis()+2*60*60*1000),sender.getName());
                 player.kickPlayer("Application de la sanction de palier 2 : Banni(e) pendant 2 heures.");
+                break;
             case 9:
                 Bukkit.getServer().broadcastMessage(ChatColor.RED + "Sanction : " + ChatColor.DARK_PURPLE + "(Palier 3) Banni(e) pendant 24 heures.");
                 Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(player.getName(),"Application de la sanction de palier 3 : Banni(e) pendant 24 heures.", new Date(System.currentTimeMillis()+24*60*60*1000),sender.getName());
                 player.kickPlayer("Application de la sanction de palier 3 : Banni(e) pendant 24 heures.");
+                break;
             case 12:
                 Bukkit.getServer().broadcastMessage(ChatColor.RED + "Sanction : " + ChatColor.DARK_PURPLE + "(Palier 4) Banni(e) pendant 7 jours.");
                 Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(player.getName(),"Application de la sanction de palier 4 : Banni(e) pendant 7 jours.", new Date(System.currentTimeMillis()+7*24*60*60*1000),sender.getName());
                 player.kickPlayer("Application de la sanction de palier 4 : Banni(e) pendant 7 jours.");
+                break;
             case 15:
                 Bukkit.getServer().broadcastMessage(ChatColor.RED + "Sanction : " + ChatColor.DARK_PURPLE + "(Palier 5) Banni(e) pendant 30 jours.");
                 Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(player.getName(),"Application de la sanction de palier 5 : Banni(e) pendant 30 jours.", new Date(System.currentTimeMillis()+30*24*60*60*1000),sender.getName());
                 player.kickPlayer("Application de la sanction de palier 5 : Banni(e) pendant 30 jours.");
+                break;
         }
 
         Bukkit.getServer().broadcastMessage(messagePrefix + ChatColor.RED + "-- Avertissement n°" + warn.getId() + " --");

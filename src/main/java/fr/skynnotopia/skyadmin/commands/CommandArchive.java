@@ -52,7 +52,7 @@ public class CommandArchive implements CommandExecutor {
             try {
                 Warn warn = new Warn(parsedId);
                 sender.sendMessage(messagePrefix + org.bukkit.ChatColor.RED + "-- Avertissement n°" + warn.getId() + " --");
-                sender.sendMessage("Émetteur : " + org.bukkit.ChatColor.AQUA + warn.getSender().getDisplayName());
+                sender.sendMessage(org.bukkit.ChatColor.RED + "Émetteur : " + org.bukkit.ChatColor.AQUA + warn.getSender().getDisplayName());
                 sender.sendMessage(org.bukkit.ChatColor.RED + "Joueur averti : " + org.bukkit.ChatColor.DARK_PURPLE + warn.getPlayer().getDisplayName());
                 sender.sendMessage(org.bukkit.ChatColor.RED + "Raison : " + org.bukkit.ChatColor.DARK_PURPLE + warn.getReason());
 
@@ -62,14 +62,19 @@ public class CommandArchive implements CommandExecutor {
                         break;
                     case 3:
                         sender.sendMessage(org.bukkit.ChatColor.RED + "Sanction : " + org.bukkit.ChatColor.DARK_PURPLE + "(Palier 1) Banni(e) pendant 30 heures.");
+                        break;
                     case 6:
                         sender.sendMessage(org.bukkit.ChatColor.RED + "Sanction : " + org.bukkit.ChatColor.DARK_PURPLE + "(Palier 2) Banni(e) pendant 2 heures.");
+                        break;
                     case 9:
                         sender.sendMessage(org.bukkit.ChatColor.RED + "Sanction : " + org.bukkit.ChatColor.DARK_PURPLE + "(Palier 3) Banni(e) pendant 24 heures.");
+                        break;
                     case 12:
                         sender.sendMessage(org.bukkit.ChatColor.RED + "Sanction : " + org.bukkit.ChatColor.DARK_PURPLE + "(Palier 4) Banni(e) pendant 7 jours.");
+                        break;
                     case 15:
                         sender.sendMessage(org.bukkit.ChatColor.RED + "Sanction : " + org.bukkit.ChatColor.DARK_PURPLE + "(Palier 5) Banni(e) pendant 30 jours.");
+                        break;
                 }
 
                 sender.sendMessage(messagePrefix + ChatColor.RED + "-- Avertissement n°" + warn.getId() + " --");
