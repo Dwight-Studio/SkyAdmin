@@ -9,7 +9,7 @@
     <version>ALPHA-2.0.0</version>
     <packaging>jar</packaging>
 
-    <name>SkyAdmin</name>
+    <name>SkyAdmin 1.14.4</name>
 
     <description>Plugin assurant l'administration de Skynnotopia</description>
     <properties>
@@ -54,7 +54,7 @@
                         <configuration>
                             <tasks>
                                 <delete file="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.0.0.jar"/>
-                                <copy file="C:\Users\Alexandre Leconte\IdeaProjects\SkyAdmin\target\SkyAdmin-ALPHA-2.0.0.jar" tofile="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.0.0.jar"/>
+                                <copy file="C:\Users\Alexandre Leconte\IdeaProjects\SkyAdmin 1.14.4\target\SkyAdmin-ALPHA-2.0.0.jar" tofile="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.0.0.jar"/>
                                 <sleep seconds="2"/>
                                 <exec executable="cmd">
                                     <arg line='cmd /k "C:\Users\Alexandre Leconte\IdeaProjects\.spigot\start.bat"'/>
