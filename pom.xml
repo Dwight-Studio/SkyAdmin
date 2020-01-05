@@ -6,17 +6,15 @@
 
     <groupId>fr.skynnotopia</groupId>
     <artifactId>SkyAdmin</artifactId>
-    <version>ALPHA-2.0.0</version>
+    <version>ALPHA-2.1.0</version>
     <packaging>jar</packaging>
 
-    <name>SkyAdmin 1.14.4</name>
+    <name>SkyAdmin</name>
 
-    <description>Plugin assurant l'administration de Skynnotopia</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>http://skynnotopia.yo.fr</url>
 
     <build>
         <defaultGoal>clean package</defaultGoal>
@@ -53,8 +51,8 @@
                         <phase>install</phase>
                         <configuration>
                             <tasks>
-                                <delete file="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.0.0.jar"/>
-                                <copy file="C:\Users\Alexandre Leconte\IdeaProjects\SkyAdmin 1.14.4\target\SkyAdmin-ALPHA-2.0.0.jar" tofile="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.0.0.jar"/>
+                                <delete file="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.1.0.jar"/>
+                                <copy file="C:\Users\Alexandre Leconte\IdeaProjects\SkyAdmin 1.15\target\SkyAdmin-ALPHA-2.1.0.jar" tofile="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.1.0.jar"/>
                                 <sleep seconds="2"/>
                                 <exec executable="cmd">
                                     <arg line='cmd /k "C:\Users\Alexandre Leconte\IdeaProjects\.spigot\start.bat"'/>
@@ -78,8 +76,8 @@
 
     <repositories>
         <repository>
-            <id>papermc-repo</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
+            <id>spigotmc-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
             <id>sonatype</id>
@@ -91,7 +89,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.14.4-R0.1-SNAPSHOT</version>
+            <version>1.15-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

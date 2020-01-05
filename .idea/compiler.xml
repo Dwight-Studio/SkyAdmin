@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SkyAdmin" />
+        <module name="SkyAdmin 1.15" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="SkyAdmin" target="1.8" />
+      <module name="SkyAdmin 1.15" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
