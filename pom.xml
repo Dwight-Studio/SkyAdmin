@@ -6,7 +6,7 @@
 
     <groupId>fr.skynnotopia</groupId>
     <artifactId>SkyAdmin</artifactId>
-    <version>ALPHA-2.1.0</version>
+    <version>${major}.${minor}.${build.number}</version>
     <packaging>jar</packaging>
 
     <name>SkyAdmin</name>
@@ -51,8 +51,8 @@
                         <phase>install</phase>
                         <configuration>
                             <tasks>
-                                <delete file="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.1.0.jar"/>
-                                <copy file="C:\Users\Alexandre Leconte\IdeaProjects\SkyAdmin 1.15\target\SkyAdmin-ALPHA-2.1.0.jar" tofile="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-ALPHA-2.1.0.jar"/>
+                                <delete file="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-${project.version}.jar"/>
+                                <copy file="C:\Users\Alexandre Leconte\IdeaProjects\SkyAdmin 1.15\target\SkyAdmin-${project.version}.jar" tofile="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-${project.version}.jar"/>
                                 <sleep seconds="2"/>
                                 <exec executable="cmd">
                                     <arg line='cmd /k "C:\Users\Alexandre Leconte\IdeaProjects\.spigot\start.bat"'/>

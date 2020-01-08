@@ -4,7 +4,7 @@ main: fr.skynnotopia.skyadmin.Main
 api-version: "1.13"
 prefix: SkyAdmin
 authors: [Deleranax]
-description: Plugin assurant l'administration de Skynnotopia
+description: Plugin assurant l'administration du serveur "Visceral Diplomacy"
 website: http://skynnotopia.yo.fr
 commands:
   skyadmin:
