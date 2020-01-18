@@ -1,6 +1,6 @@
 name: SkyAdmin
 version: ${project.version}
-main: fr.skynnotopia.skyadmin.Main
+main: Main
 api-version: "1.13"
 prefix: SkyAdmin
 authors: [Deleranax]
