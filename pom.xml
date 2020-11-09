@@ -6,7 +6,7 @@
 
     <groupId>fr.skynnotopia</groupId>
     <artifactId>SkyAdmin</artifactId>
-    <version>${major}.${minor}.${build.number}</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>SkyAdmin</name>
@@ -44,27 +44,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <configuration>
-                            <tasks>
-                                <delete file="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-${project.version}.jar"/>
-                                <copy file="C:\Users\Alexandre Leconte\IdeaProjects\SkyAdmin 1.15\target\SkyAdmin-${project.version}.jar" tofile="C:\Users\Alexandre Leconte\IdeaProjects\.spigot\plugins\SkyAdmin-${project.version}.jar"/>
-                                <sleep seconds="2"/>
-                                <exec executable="cmd">
-                                    <arg line='cmd /k "C:\Users\Alexandre Leconte\IdeaProjects\.spigot\start.bat"'/>
-                                </exec>
-                            </tasks>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -89,7 +68,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.15-R0.1-SNAPSHOT</version>
+            <version>1.16.3-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
