@@ -1,6 +1,6 @@
 name: SkyAdmin
 version: ${project.version}
-main: Main
+main: fr.dwightstudio.skyadmin.Main
 api-version: "1.16"
 prefix: SkyAdmin
 authors: [Deleranax]
